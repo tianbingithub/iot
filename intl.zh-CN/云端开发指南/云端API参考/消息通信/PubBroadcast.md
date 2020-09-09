@@ -1,73 +1,85 @@
-# PubBroadcast {#reference_i4y_bkd_xdb .reference}
+# PubBroadcast
 
-调用该接口向订阅了指定Topic的所有设备发布广播消息。
+调用该接口向指定产品所有设备，或向订阅了指定Topic的所有设备发布广播消息。
 
-## 限制说明 {#section_pnj_vjy_dgb .section}
+## 限制说明
 
-服务器SDK每秒只可发送一条广播消息。消息发送到物联网平台后，可以被多个设备订阅接收。
+-   指定Topic订阅广播，单阿里云账号调用该接口的每秒请求数（QPS）最大限制为1。
+-   全量在线设备广播，单阿里云账号调用该接口的每分钟内请求数（QPM）最大限制为1。
 
-## 请求参数 {#section_idz_y2b_ydb .section}
+**说明：** 子账号共享主账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：PubBroadcast。|
-|ProductKey|String|是|要发送广播消息的产品Key。|
-|TopicFullName|String|是| 要接收广播消息的Topic全称。格式为：`/broadcast/$\{productKey\}/自定义字段`。其中，$\{productKey\}是要接收广播消息的具体产品Key；自定义字段中您可以指定任意字段。
+## 调试
 
- **说明：** 
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=PubBroadcast&type=RPC&version=2018-01-20)
+
+## 请求参数
+
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|PubBroadcast|系统规定参数。取值：PubBroadcast。 |
+|MessageContent|String|是|aGVsbG93b3JsZA|要发送的消息主体，最大报文64 KB。
+
+ 您需要将消息原文转换成二进制数据，并进行Base64编码，从而生成消息主体。 |
+|ProductKey|String|是|aldeji3\*\*\*\*\*|要发送广播消息的产品Key。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|公共实例不传此参数；您购买的实例需传入实例ID。 |
+|TopicFullName|String|否|/broadcast/UPqSxj2vXXX/xxx|可选参数：
+
+ -   不赋值，表示全量在线设备广播，推送消息到指定**ProductKey**的全量在线设备。设备端收到的广播Topic格式为`/sys/${productKey}/${deviceName}/broadcast/request/${MessageId}`，其中**MessageId**由物联网平台生成。
+-   赋值，表示指定Topic订阅广播，推送消息到指定**ProductKey**的已订阅广播Topic的在线设备。传入要接收广播消息的Topic全称，格式为：`/broadcast/${productKey}/自定义字段`。其中，**$\{productKey\}**是要接收广播消息的具体产品**ProductKey**；自定义字段中您可以指定任意字段。
+
+ **说明：**
 
 -   广播Topic是在设备开发时编码定义的，无需控制台创建。
+-   一个广播Topic最多可被1,000个设备订阅。如果您的设备超过数量限制，您可以对设备进行分组。例如，如果您有5,000个设备，您可以将设备按每组1,000个，而分成5组。您需要分5次调用广播Topic，自定义字段分别设置为group1/2/3/4/5，然后让每组设备分别订阅各自分组的广播Topic。 |
 
--   一个广播Topic最多可被1,000个设备订阅。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
-如果您的设备超过数量限制，您可以对设备进行分组。例如，如果您有5,000个设备，您可以将设备按每组1,000个，而分成5组。您需要分5次调用广播Topic，自定义字段分别设置为group1/2/3/4/5，然后让每组设备分别订阅各自分组的广播Topic。
+## 返回数据
 
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|MessageId|Long|1234291569964771840|成功发送消息后，云端生成的消息ID，用于标识该消息。 |
+|RequestId|String|BB71E443-4447-4024-A000-EDE09922891E|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
 
- |
-|MessageContent|String|是|要发送的消息主体。您需要将消息原文转换成二进制数据，并进行Base64编码，从而生成消息主体。|
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+## 示例
 
-## 返回参数 {#section_mly_bgb_ydb .section}
-
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|MessageId|String|成功发送消息后，云端生成的消息ID，用于标识该消息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-
-## 示例 {#section_wjc_fgb_ydb .section}
-
-**请求示例**
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=PubBroadcast
 &ProductKey=al**********
-&TopicFullName=%252Fbroadcast%252FUPqSxj2vXXX%252Fxxx
-&MessageContent=aGVsbG93b3JsZA==
-&公共请求参数
+&TopicFullName=/broadcast/UPqSxj2vXXX/xxx
+&MessageContent=aGVsbG93b3JsZA
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-          "RequestId":"BB71E443-4447-4024-A000-EDE09922891E",
-          "Success":true,
-      }
-    ```
+```
+<PubBroadcastResponse>
+        <RequestId>BB71E443-4447-4024-A000-EDE09922891E</RequestId>
+        <MessageId>1234291569964771840</MessageId>
+        <Success>true</Success>
+  </PubBroadcastResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version='1.0' encoding='UTF-8'?>
-      <PubBroadcastResponse>
-          <RequestId>BB71E443-4447-4024-A000-EDE09922891E</RequestId>
-          <Success>true</Success>
-      </PubBroadcastResponse>
-    ```
+```
+{
+      "RequestId":"BB71E443-4447-4024-A000-EDE09922891E",
+      "MessageId":1234291569964771840,
+      "Success":true
+}
+```
 
+## 错误码
+
+访问[错误中心](https://error-center.alibabacloud.com/status/product/Iot)查看更多错误码。
 
