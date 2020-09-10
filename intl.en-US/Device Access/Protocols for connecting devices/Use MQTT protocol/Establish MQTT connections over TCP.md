@@ -66,7 +66,7 @@ FAFD82A3D602B37FB0FA8B7892F24A477F85****
     -   Preregistration-free unique-certificate-per-product authentication: Use ProductKey, DeviceName, ClientID, and DeviceToken to connect the device to IoT Platform.
 
         ```
-mqttClientId: clientId+"|securemode=-2,signmethod=hmacsha1,timestamp=132323232|"
+mqttClientId: clientId+"|securemode=-2,authType=connwl|"
 mqttUsername: deviceName+"&"+productKey
 mqttPassword: deviceToken
         ```
@@ -74,8 +74,7 @@ mqttPassword: deviceToken
         -   mqttClientId: Extended parameters are placed between vertical bars \(`|`\).
         -   clientId, deviceToken: the ClientID and DeviceToken that are obtained when the device is dynamically registered. For more information, see [MQTT-based dynamic registration]().
         -   securemode: the current security mode. If you use preregistration-free unique-certificate-per-product authentication, the value is -2.
-        -   signmethod: the signature algorithm. Valid values: hmacmd5, hmacsha1, hmacsha256, and sha256. Default value: hmacmd5.
-        -   timestamp: the current time, in milliseconds. This parameter is optional. |
+        -   authType: the authentication type. If you use preregistration-free unique-certificate-per-product authentication, the value is regnwl. |
 
 
 ## Examples
