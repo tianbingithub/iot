@@ -4,19 +4,19 @@ This topic describes how to manage consumer groups. Consumer groups function as 
 
 -   Applications of consumer groups:
 
-    -   You can use the AMQP server-side subscription to subscribe to a specified type of messages from all devices under a product and forward the messages to a specified consumer group. Your applications receive messages by listening to the consumer group.
+    -   You can use the AMQP server-side subscription to subscribe to a specified type of messages from all devices under a product. Then, you can forward the messages to a specified consumer group. Your applications receive messages by listening to the consumer group.
 
-        For more information about configuring AMQP server-side subscriptions, see [Configure AMQP server-side subscription in the console](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Configure AMQP server-side subscription in the console.md).
+        For information about how to AMQP server-side subscriptions, see [Configure AMQP server-side subscription in the console](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Configure AMQP server-side subscription in the console.md).
 
     -   You can use the data forwarding function to forward messages from a specified topic to an AMQP consumer group. Your applications receive messages by listening to the consumer group.
 
-        For more information about how to configure data forwarding rules, see [Configure data forwarding rules](/intl.en-US/Communications/Data Forwarding/Configure data forwarding rules.md).
+        For information about how to configure data forwarding rules, see [Configure data forwarding rules](/intl.en-US/Communications/Data Forwarding/Configure data forwarding rules.md).
 
-    For more information about the differences between server-side subscription and data forwarding, see [Compare data forwarding solutions](/intl.en-US/Communications/Data Forwarding/Compare data forwarding solutions.md).
+    For information about the differences between server-side subscription and data forwarding, see [Compare data forwarding solutions](/intl.en-US/Communications/Data Forwarding/Compare data forwarding solutions.md).
 
--   Usage of consumer groups: configure the consumer group ID on the AMQP client. The AMQP client accesses IoT Platform as a consumer group and receives messages.
+-   Usage of consumer groups: Configure the consumer group ID on the AMQP client. The AMQP client accesses IoT Platform as a consumer group and receives messages.
 
-    Multiple AMQP clients can share a consumer group ID to form a consumer group. When a device message arrives, IoT Platform sends it to a random client in the consumer group. A consumer group can have up to 64 clients.
+    Multiple AMQP clients can share a consumer group ID to form a consumer group. When a device message arrives, IoT Platform sends it to a random client in the consumer group. Each consumer group can have up to 64 clients.
 
     For more information, see [Connect an AMQP client to IoT Platform](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Connect an AMQP client to IoT Platform.md).
 
@@ -25,24 +25,24 @@ This topic describes how to manage consumer groups. Consumer groups function as 
 
 1.  Log on to the [IoT Platform console](http://iot.console.aliyun.com/).
 
-2.  On the Server-side Subscription page, choose **Consumer Groups** \> **Create Consumer Group**.
+2.  Select **Rules** \> **Server-side Subscription** \> **Consumer Groups**.
 
-3.  In the Create Consumer Group dialog box that appears, enter a group name and click **OK**.
+3.  Click **Create Consumer Group**.
 
-    The consumer group name can contain letters, digits, and underscores \(\_\). It can be 4 to 30 characters in length.
+4.  In the Create Consumer Group dialog box that appears, enter a group name and click **OK**.
 
-    After the consumer group is created, the page automatically jumps to the Consumer group details page. On this page, you can create subscriptions or view the status of consumer groups.
+    The consumer group name can contain Chinese, English letters, Japanese, digits, and underscores \(\_\). It must be 4 to 30 characters in length. Each Chinese or Japanese occupies 2 characters.
 
 
 ## View and monitor consumer groups
 
-You can view the message consumption and accumulation status in a consumer group. You can also set CloudMonitor alert rules to monitor the message accumulation and consumption rate.
+You can view the message consumption rate and accumulation amount in a consumer group. You can also set Cloud Monitor alert rules to monitor the consumer group.
 
-1.  On the Server-side Subscription page, select the **Consumer Groups** tab.
+1.  On the Server-side Subscription page, click the **Consumer Groups** tab.
 
 2.  On the Consumer Groups tab, find the consumer group you want to view, and click **View**.
 
-3.  On the Consumer Group Details page, select the **Consumer Group Status** tab.
+3.  On the Consumer Group Details page, click the **Consumer Group Status** tab.
 
 4.  On the Consumer Group Status tab, you can view the message consumption rate, number of accumulated messages, time of the last consumption, and online client list.
 
@@ -52,21 +52,30 @@ You can view the message consumption and accumulation status in a consumer group
 
     1.  On the Consumer Group Status tab, click **Alert Settings**.
 
-    2.  On the Create Alert Rule page, you can set an alert rule based on a specific threshold.
+    2.  On the Create Alert Rule page, you can set an alert rule based on a specific threshold, and click **Confirm**.
 
-        |Parameter|Description|
-        |:--------|:----------|
-        |Product|Select **IoT Platform**.|
-        |Resource Range|Only the **Instance** option is supported.|
-        |Region|This parameter is available only when you set Resource Range to **Instance**. This is the region of IoT Platform instance to which the consumer group to be monitored belongs.|
+        |Section|Parameter|Description|
+        |-------|:--------|:----------|
+        |Related Resource|Product|Select **IoT Platform**.|
+        |Resource Range|Valid values:        -   **All resource**: includes all consumer groups under all instances.
+        -   **Instance** |
+        |Region|This parameter is available only when you set Resource Range to **Instance**. This is the region of the IoT Platform instance to which the consumer group to be monitored belongs.|
         |Instance|Select the IoT Platform instance and consumer group to be monitored. You can select multiple consumer groups. An alert notification is sent only when the number of accumulated messages or the consumption rate of a consumer group triggers the alert rule. |
-        |Alert Rule|Set the name of the alert rule.|
+        |Set Alert Rules|Alert Rule|Set the name of the alert rule.|
         |Rule Description|Describes the condition to trigger the alert rule. You must configure the following items:         -   Select a metric for the rule.
         -   Select a scanning period for the rule. For example, if the scan period is set to 60 minutes, scans are performed every 60 minutes.
         -   Set the triggering condition. For example, an alert is triggered only if the number of devices exceeds 5,000 for three consecutive scan periods. |
-        |Silent Duration|Set the interval for the next alert if the triggering condition remains after the alert is triggered.|
-        |Effective Period|Set the period for which the alert rule is effective. The alert notifications are only sent within the effective period.|
-        |Notification Method|Set the notification parameters, such as the notification contacts and notification methods. For more information about notification contacts, see [Configure alert contacts](https://www.alibabacloud.com/help/doc-detail/131982.htm). |
+        |Mute for|Set the interval for the next alert if the triggering condition remains after the alert is triggered.|
+        |Effective Period|Set the period for which the alert rule is effective. Alert notifications are sent only within the effective period.|
+        |Notification Method|Notification Contact|Set the contact group that receives alerts. For more information, see [Configure alert contacts](/intl.en-US/Best Practices/Maintenance and Monitoring/Use CloudMonitor to monitor IoT resources/Configure alert contacts.md).|
+        |Notification Methods|Valid value:
+
+        -   Info: Email + DingTalk robot notification. |
+        |Auto Scaling|If you select this option, the corresponding scaling rule is triggered when the alert occurs.|
+        |Log Service|If you select this option, the alert information is written to Log Service.|
+        |Email Subject|This parameter is available only when you set Resource Range to **Instance**. Enter the subject of the email that is sent to the alert contact if the alert is triggered. The default subject is Product Name + Metric Name + Instance ID.|
+        |Email Remark|Enter the remarks of the email that is sent to the alert contact if the alert is triggered.|
+        |HTTP CallBack|Enter a URL that can be accessed from the Internet. The Cloud Monitor pushes alert information to this address by using the POST request.|
 
 
 ## Delete a consumer group
@@ -86,17 +95,16 @@ The consumer group that you have created can be deleted, but the default consume
 3.  On the Consumer Groups tab of the Server-side Subscription page, find the target consumer group and click **Delete**. Read the dialog box that appears and make sure that you understand the consequences. Then click **Confirm**.
 
 
-## Related topics
+## Reference
 
-For more information about how to configure the consumer group ID on the AMQP client to receive messages, see:
+Configure the consumer group ID to the AMQP client to receive messages. For more information, see:
 
-[Connect an AMQP client to IoT Platform](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Connect an AMQP client to IoT Platform.md)
-
-[Java SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Java SDK access example.md)
-
-[Node.js SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Node.js SDK access example.md)
-
-[.NET SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/.NET SDK access example.md)
-
-[Python 2.7 SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Python 2.7 SDK access example.md)
+-   [Connect an AMQP client to IoT Platform](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Connect an AMQP client to IoT Platform.md)
+-   [Java SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Java SDK access example.md)
+-   [Node.js SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Node.js SDK access example.md)
+-   [.NET SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/.NET SDK access example.md)
+-   [Python 2.7 SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Python 2.7 SDK access example.md)
+-   [t1916992.md\#]()
+-   [t1912557.md\#]()
+-   [Go SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Go SDK access example.md)
 
