@@ -38,17 +38,19 @@ This topic describes how to manage consumer groups. Consumer groups function as 
 
 You can view the message consumption rate and accumulation amount in a consumer group. You can also set Cloud Monitor alert rules to monitor the consumer group.
 
-1.  On the Server-side Subscription page, click the **Consumer Groups** tab.
+1.  Log on to the [IoT Platform console](http://iot.console.aliyun.com/).
 
-2.  On the Consumer Groups tab, find the consumer group you want to view, and click **View**.
+2.  Select **Rules** \> **Server-side Subscription** \> **Consumer Groups**.
 
-3.  On the Consumer Group Details page, click the **Consumer Group Status** tab.
+3.  On the Consumer Groups tab, find the consumer group you want to view, and click **View**.
 
-4.  On the Consumer Group Status tab, you can view the message consumption rate, number of accumulated messages, time of the last consumption, and online client list.
+4.  On the Consumer Group Details page, click the **Consumer Group Status** tab.
+
+5.  On the Consumer Group Status tab, you can view the message consumption rate, number of accumulated messages, time of the last consumption, and online client list.
 
     If the number of accumulated messages is greater than 0, a **Clear** button is displayed to the right of **Accumulated Messages**.
 
-5.  Configure a CloudMonitor alert rule to monitor the accumulation of message queues in consumer groups and the consumption rate of message consumption in consumer groups. You can also receive alert messages.
+6.  Configure a CloudMonitor alert rule to monitor the accumulation of message queues in consumer groups and the consumption rate of message consumption in consumer groups. You can also receive alert messages.
 
     1.  On the Consumer Group Status tab, click **Alert Settings**.
 
@@ -82,29 +84,18 @@ You can view the message consumption rate and accumulation amount in a consumer 
 
 The consumer group that you have created can be deleted, but the default consumer group cannot be deleted. You can delete a consumer group so that all consumers in the group stop receiving messages.
 
-1.  On the Server-side Subscription page, select the **Consumer Groups** tab.
+1.  Log on to the [IoT Platform console](http://iot.console.aliyun.com/).
 
-2.  Cancel the subscription. If the consumer group is associated with a subscription, you must cancel the subscription before you can delete the consumer group. If the consumer group has no subscriptions, you can skip this step.
+2.  Select **Rules** \> **Server-side Subscription** \> **Consumer Groups**.
+
+3.  Cancel the subscription. If the consumer group is associated with a subscription, you must cancel the subscription before you can delete the consumer group. If the consumer group has no subscriptions, you can skip this step.
 
     1.  Find the corresponding consumer group and click **View**.
 
-    2.  On the Subscribed Products tab of the Consumer Group Details page, find the product name, and click **Unsubscribe**. Read the dialog box that appears and make sure that you understand the consequences. Then click **Confirm**.
+    2.  On the Subscribed Products tab of the Consumer Group Details page, find the product name, and click **Unsubscribe**. Read the dialog box that appears and make sure that you understand the consequences. Then click **OK**.
 
         **Note:** If the server-side subscription has only one consumer group, you cannot unsubscribe on the Consumer Group Details page. You must go back to the Server-side Subscription page, edit the subscription, change the consumer group or delete the subscription.
 
-3.  On the Consumer Groups tab of the Server-side Subscription page, find the target consumer group and click **Delete**. Read the dialog box that appears and make sure that you understand the consequences. Then click **Confirm**.
+4.  On the Consumer Groups tab of the Server-side Subscription page, find the target consumer group and click **Delete**. Read the dialog box that appears and make sure that you understand the consequences. Then click **OK**.
 
-
-## Reference
-
-Configure the consumer group ID to the AMQP client to receive messages. For more information, see:
-
--   [Connect an AMQP client to IoT Platform](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Connect an AMQP client to IoT Platform.md)
--   [Java SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Java SDK access example.md)
--   [Node.js SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Node.js SDK access example.md)
--   [.NET SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/.NET SDK access example.md)
--   [Python 2.7 SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Python 2.7 SDK access example.md)
--   [t1916992.md\#]()
--   [t1912557.md\#]()
--   [Go SDK access example](/intl.en-US/Communications/Server-side Subscription/Use AMQP server-side subscription/Go SDK access example.md)
 
