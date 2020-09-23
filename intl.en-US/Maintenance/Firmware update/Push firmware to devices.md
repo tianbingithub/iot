@@ -53,12 +53,12 @@ The limits of firmware updates are described as follows:
 
 Differential updates optimize the usage of device resources and minimize the traffic that is consumed to firmware files. |
     |Firmware Name|The name of the firmware. The name can contain letters, digits, and underscores \(\_\) and cannot start with an underscore \(\_\). The name must be 4 to 32 characters in length.|
-    |Firmware Version|The version for the firmware. The version number can contain lowercase letters, digits, hyphens \(-\), and underscores \(\_\). The version number must be 1 to 64 characters in length. You must specify this parameter if you set the Type parameter to **Full**. |
-    |Version number to be upgraded|The firmware versions to be updated. The drop-down list shows the firmware versions of all devices under the current product. You can select one or more firmware versions from the drop-down list. You must specify this parameter if you set the Type parameter to **Differential**. |
-    |Post-upgrade version number|The target firmware version. You must set this parameter when you set the Type parameter to **Differential**. |
     |Product|The product to which the specified firmware belongs.|
     |Firmware Module|The module of the firmware. Firmware updates are based on different modules of devices under a product.     -   Select: Select one or more existing firmware modules.
     -   Add: Customize a new module. The module name can contain lowercase letters, digits, hyphens \(-\), and underscores \(\_\). The module name must be 1 to 64 characters in length. Default value: default. |
+    |Firmware Version|The version for the firmware. The version number can contain lowercase letters, digits, hyphens \(-\), and underscores \(\_\). The version number must be 1 to 64 characters in length. You must specify this parameter if you set the Type parameter to **Full**. |
+    |Version number to be upgraded|The firmware versions to be updated. The drop-down list shows the firmware versions of all devices under the current product. You can select one or more firmware versions from the drop-down list. You must specify this parameter if you set the Type parameter to **Differential**. |
+    |Post-upgrade version number|The target firmware version. You must set this parameter when you set the Type parameter to **Differential**. |
     |Signature Algorithm|The signature algorithm. Only MD5 and SHA256 are supported.|
     |Select Firmware|Uploads a firmware file. The maximum size of a firmware file is 1,000 MB. The file format can only be .bin, .tar, .gz, .tar.gz, .zip, or .gzip.|
     |Description|The description of the firmware features. The description can be up to 100 characters in length.|
@@ -116,7 +116,7 @@ Find the required firmware and click **View** in the Actions column. On the Batc
 
 **View the status of an update batch**
 
-On the Batch Management tab, find the required update batch and click **View** in the Actions column. On the Batch Details page, you can view devices in different update states on the Device List tab.
+On the Batch Management tab, find the required update batch and click **View** in the Actions column. On the Batch Details page, you can view devices in different update states on the Device List tab. The
 
 |State|Description|
 |-----|-----------|
