@@ -1,0 +1,420 @@
+---
+keyword: [Internet of Things, IoT Platform, IoT, forward data, send data, system-defined topic, data format, data structure]
+---
+
+# Data formats
+
+If you want to process data by using the rules engine, you must write SQL statements based on topics. If you use custom topics, you can define the data formats of the topics. IoT Platform does not parse payloads in custom topics. The data formats of topics for basic communications and topics for TSL communications are defined by IoT Platform. You need to parse payloads based on the data formats that are defined by IoT Platform. This topic describes the data formats of topics for basic communications and topics for TSL communications.
+
+## Submit device status
+
+Topic: `/as/mqtt/status/{productKey}/{deviceName}`
+
+You can use this topic to retrieve the online or offline states of devices.
+
+Data format:
+
+```
+{
+    "status":"online|offline",
+    "productKey":"al12345****",
+    "deviceName":"deviceName1234",
+    "time":"2018-08-31 15:32:28.205",
+    "utcTime":"2018-08-31T07:32:28.205Z",
+    "lastTime":"2018-08-31 15:32:28.195",
+    "utcLastTime":"2018-08-31T07:32:28.195Z",
+    "clientIp":"123.123.123. ***"
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|status|String|The status of the device. -   online: online
+-   offline: offline |
+|productKey|String|The unique identifier of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|time|String|The time when the status notification was sent.|
+|utcTime|String|The UTC time when the status notification was sent.|
+|lastTime|String|The time when the last communication occurred before the status changed. **Note:** To avoid message timing disorders, we recommend that you maintain the final device status based on the lastTime parameter. |
+|utcLastTime|String|The last communication time before the status changed. The time is displayed in UTC.|
+|clientIp|String|The public IP address of the device.|
+
+## Submit device properties
+
+Topic: `/{productKey}/{deviceName}/thing/event/property/post`
+
+You can use this topic to retrieve the properties submitted by devices.
+
+Data format:
+
+```
+{
+    "iotId":"4z819VQHk6VSLmmBJfrf00107e****",
+    "productKey":"al12345****",
+    "deviceName":"deviceName1234",
+    "gmtCreate":1510799670074,
+    "deviceType":"Ammeter",
+    "items":{
+        "Power":{
+            "value":"on",
+            "time":1510799670074
+        },
+        "Position":{
+            "time":1510292697470,
+            "value":{
+                "latitude":39.9,
+                "longitude":116.38
+            }
+        }
+    }
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|iotId|String|The unique identifier of the device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|deviceType|String|The type of the device.|
+|items|Object|The data submitted by the device.|
+|Power|String|The name of the property. For more information about the properties, see the TSL of the product.|
+|Position|String|The name of the property. For more information about the properties, see the TSL of the product.|
+|value|Defined based on TSL|The value of the property.|
+|time|Long|The time when the property was generated. If the device does not submit the timestamp, the timestamp generated when IoT Platform receives the message is used by default.|
+|gmtCreate|Long|The time when the message was generated.|
+
+## Submit device events
+
+Topic: `/{productKey}/{deviceName}/thing/event/{tsl.event.identifier}/post`
+
+You can use this topic to retrieve the events submitted by devices.
+
+Data format:
+
+```
+{
+    "identifier":"BrokenInfo",
+    "name":"Damage rate report",
+    "type":"info",
+    "iotId":"4z819VQHk6VSLmmBJfrf00107e****",
+    "productKey":"X5eCzh6****",
+    "deviceName":"5gJtxDVeGAkaEztpisjX",
+    "gmtCreate":1510799670074,
+    "value":{
+        "Power":"on",
+        "Position":{
+            "latitude":39.9,
+            "longitude":116.38
+        }
+    },
+    "time":1510799670074
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|iotId|String|The unique identifier of the device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|type|String|The type of the event. For more information about the event types, see the TSL of the product.|
+|value|Object|The parameters of the event.|
+|Power|String|The name of the event parameter.|
+|Position|String|The name of the event parameter.|
+|time|Long|The time when the event was generated. If the device does not submit the timestamp, the timestamp generated when IoT Platform receives the message is used by default.|
+|gmtCreate|Long|The time when the message was generated.|
+
+## Submit lifecycle changes
+
+Topic: `/{productKey}/{deviceName}/thing/lifecycle`
+
+You can use this topic to retrieve notifications when devices are created, deleted, enabled, and disabled.
+
+Data format:
+
+```
+{
+    "action" : "create|delete|enable|disable",
+    "iotId" : "4z819VQHk6VSLmmBJfrf00107e****",
+    "productKey" : "al5eCzh****",
+    "deviceName" : "5gJtxDVeGAkaEztpisjX",
+    "deviceSecret" : "", 
+    "messageCreateTime": 1510292739881 
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|action|String|-   create: creates a device
+-   delete: deletes a device
+-   enable: enables a device
+-   disable: disables a device |
+|iotId|String|The unique identifier of the device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|deviceSecret|String|The key of the device. This parameter is included only when the action parameter is set to create.|
+|messageCreateTime|Integer|The timestamp when the message was generated. Unit: milliseconds.|
+
+## Submit topology changes
+
+Topic: `/{productKey}/{deviceName}/thing/topo/lifecycle`
+
+You can use this topic to retrieve notifications when topological relationships between sub-devices and gateways are created or deleted.
+
+Data format:
+
+```
+{
+    "action" : "create|delete|enable|disable",
+    "gwIotId": "dfaejVQHk6VSLmmBJfrf00107e****",
+    "gwProductKey": "al5eCzh****",
+    "gwDeviceName": "deviceName1234",
+    "devices": [ 
+        {
+          "iotId": "4z819VQHk6VSLmmBJfrf00107e****",
+          "productKey": "ala4Czh****",
+          "deviceName": "deviceName1234"
+       }
+    ],
+
+    "messageCreateTime": 1510292739881 
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|action|String|-   create: creates a topology
+-   delete: deletes a topology
+-   enable: enables a topology
+-   disable: disables a topology |
+|gwIotId|String|The unique identifier of the gateway in IoT Platform.|
+|gwProductKey|String|The unique identifier of the product to which the gateway belongs.|
+|gwDeviceName|String|The name of the gateway.|
+|devices|Object|The list of sub-devices whose topologies changed.|
+|iotId|String|The unique identifier of the device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the sub-device belongs.|
+|deviceName|String|The name of the sub-device.|
+|messageCreateTime|Integer|The timestamp when the message was generated. Unit: milliseconds.|
+
+## Submit information of detected sub-devices
+
+Topic: `/{productKey}/{deviceName}/thing/list/found`
+
+In certain scenarios, gateways can detect sub-devices and submit sub-device information. You can use this topic to retrieve the submitted information.
+
+Data format:
+
+```
+{
+    "gwIotId":"dfaew9VQHk6VSLmmBJfrf00107e****",
+    "gwProductKey":"al12345****",
+    "gwDeviceName":"deviceName1234",
+    "devices":[
+        {
+            "iotId":"4z819VQHk6VSLmmBJfrf00107e****",
+            "productKey":"alr56g9****",
+            "deviceName":"deviceName1234"
+        }
+    ]
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|gwIotId|String|The unique identifier of the device in IoT Platform.|
+|gwProductKey|String|The unique identifier of the product to which the device belongs.|
+|gwDeviceName|String|The name of the gateway.|
+|devices|Object|The list of sub-devices detected by the gateway.|
+|iotId|String|The unique identifier of the sub-device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the sub-device belongs.|
+|deviceName|String|The name of the sub-device.|
+
+## Submit responses to downstream requests
+
+Topic: `/{productKey}/{deviceName}/thing/downlink/reply/message`
+
+You can use this topic to retrieve the results that are returned after devices process downstream requests. IoT Platform sends the downstream requests to devices in an asynchronous manner. If errors occur when IoT Platform sends the downstream requests, you can also use this topic to retrieve error messages.
+
+Data format:
+
+```
+{
+    "gmtCreate":1510292739881,
+    "iotId":"4z819VQHk6VSLmmBJfrf00107e****",
+    "productKey":"al12355****",
+    "deviceName":"deviceName1234",
+    "requestId":1234,
+    "code":200,
+    "message":"success",
+    "topic":"/sys/al12355****/deviceName1234/thing/service/property/set",
+    "data":{
+
+    }
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|gmtCreate|Long|The timestamp. The time is displayed in UTC.|
+|iotId|String|The unique identifier of the device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|requestId|Long|The ID of the request that IoT Platform sent to the device.|
+|code|Integer|The status code of the response, see [Table 1](#table_p23_n5l_b2b).|
+|message|String|The status code message of the response, see [Table 1](#table_p23_n5l_b2b).|
+|data|Object|The data returned by the device. If the device returns Alink formatted data, you do not need to parse the data. If the device returns pass-through data, you must parse the data by using a data parsing script.|
+
+|Code|Message|Description|
+|:---|:------|:----------|
+|200|success|The message returned because the request is successful.|
+|400|request error|The message returned because an internal error has occurred during request processing.|
+|460|request parameter error|The message returned because the request parameter is invalid and the device has failed to verify the parameter.|
+|429|too many requests|The message returned because the maximum number of requests has been reached.|
+|9200|device not actived|The message returned because the device is not activated.|
+|9201|device offline|The message returned because the device is disconnected from IoT Platform.|
+|403|request forbidden|The message returned because the request is forbidden due to overdue payments.|
+
+## Submit historical properties
+
+Topic: `/{productKey}/{deviceName}/thing/event/property/history/post`
+
+You can use this topic to retrieve historical TSL data submitted by devices.
+
+Data format:
+
+```
+{
+    "iotId":"4z819VQHk6VSLmmBJfrf00107e****",
+    "productKey":"12345****",
+    "deviceName":"deviceName1234",
+    "gmtCreate":1510799670074,
+    "deviceType":"Ammeter",
+    "items":{
+        "Power":{
+            "value":"on",
+            "time":1510799670074
+        },
+        "Position":{
+            "time":1510292697470,
+            "value":{
+                "latitude":39.9,
+                "longitude":116.38
+            }
+        }
+    }
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|iotId|String|The unique identifier of the device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|gmtCreate|Long|The time when the message was generated.|
+|deviceType|String|The type of the TSL feature. For more information, see the TSL of the product.|
+|items|Object|The data submitted by the device.|
+|Power|String|The name of the property. For more information about the properties, see the TSL of the product.|
+|Position|String|The name of the property. For more information about the properties, see the TSL of the product.|
+|value|Defined based on TSL|The value of the property.|
+|time|Long|The time when the property was generated. If the device does not submit the timestamp, the timestamp generated when IoT Platform receives the message is used by default.|
+
+## Submit historical events
+
+Topic: `/{productKey}/{deviceName}/thing/event/{tsl.event.identifier}/history/post`
+
+You can use this topic to retrieve historical events submitted by devices.
+
+Data format:
+
+```
+{
+    "identifier":"BrokenInfo",
+    "name":"Damage rate report",
+    "type":"info",
+    "iotId":"4z819VQHk6VSLmmBJfrf00107e****",
+    "productKey":"X5eCzh6****",
+    "deviceName":"5gJtxDVeGAkaEztpisjX",
+    "gmtCreate":1510799670074,
+    "value":{
+        "Power":"on",
+        "Position":{
+            "latitude":39.9,
+            "longitude":116.38
+        }
+    },
+    "time":1510799670074
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|:--------|:---|:----------|
+|identifier|String|The identifier of the event.|
+|name|String|The name of the event.|
+|type|String|The type of the event. For more information about the event types, see the TSL of the product.|
+|iotId|String|The unique identifier of the device in IoT Platform.|
+|productKey|String|The unique identifier of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|gmtCreate|Long|The time when the message was generated.|
+|value|Object|The parameters of the event.|
+|Power|String|The name of the event parameter.|
+|Position|String|The name of the event parameter.|
+|time|Long|The time when the event was generated. If the device does not submit the timestamp, the timestamp generated when IoT Platform receives the message is used by default.|
+
+## Submit firmware update status
+
+Topic: `/${productKey}/${deviceName}/ota/upgrade`
+
+You can use this topic to retrieve notifications when firmware updates succeed or fail.
+
+**Note:** If a device has a pending update and you initiate another batch update task on the device, the latter update task fails. In this case, notifications generated when the latter update task fails are not submitted to IoT Platform.
+
+Data format:
+
+```
+{
+    "iotId": "4z819VQHk6VSLmmBJfrf00107e****",
+    "productKey": "X5eCzh6****",
+    "deviceName": "deviceName1234",
+    "status": "SUCCEEDED|FAILED",
+    "messageCreateTime": 1571323748000,
+    "srcVersion": "1.0.1",
+    "destVersion": "1.0.2",
+    "desc": "success",
+    "jobId": "wahVIzGkCMuAUE2gDERM02****",
+    "taskId": "y3tOmCDNgpR8F9jnVEzC01****"
+}
+```
+
+Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|iotId|String|The ID of the device. This parameter uniquely identifies the device in IoT Platform.|
+|productKey|String|The key of the product to which the device belongs.|
+|deviceName|String|The name of the device.|
+|status|String|The status of the update. -   SUCCEEDED: The update is successful.
+-   FAILED: The update failed. |
+|messageCreateTime|Long|The timestamp when the message was generated. Unit: milliseconds.|
+|srcVersion|String|The firmware version before the update.|
+|destVersion|String|The target firmware version of the update.|
+|desc|String|The description of the update.|
+|jobId|String|The ID of the update batch. This parameter uniquely identifies the update batch.|
+|taskId|String|The unique identifier of the device update record.|
+
