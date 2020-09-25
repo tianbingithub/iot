@@ -10,8 +10,8 @@ You can connect or disconnect sub-devices in sequence or in batches. Before you 
 
 -   The message delivery between sub-devices and IoT Platform supports QoS 0 rather than QoS 1.
 -   The number of sub-devices that are online at the same time cannot exceed 1,500 for a gateway. If the number of online sub-devices exceeds 1,500, IoT Platform rejects all new connection requests.
--   When you connect or disconnect sub-devices in batches, the number of sub-devices in one batch cannot exceed 5.
--   When you connect or disconnect sub-devices in batches, the result is either all sub-devices succeed or all sub-devices fail. If all sub-devices fail, the data response parameter contains detailed failure information.
+-   When you send a request for connecting or disconnecting sub-devices in batches, the number of sub-devices in one batch cannot exceed 5.
+-   The result of a request for connecting or disconnecting sub-devices in batches is either all sub-devices succeed or all sub-devices fail. If all sub-devices fail, the data response parameter contains detailed device information.
 
 ## Connect sub-devices
 
@@ -90,7 +90,7 @@ Sample response in the Alink JSON format:
 |id|String|The message ID. Valid values: 0 to 4294967295. Each message ID must be unique for the device.|
 |code|Integer|The HTTP status code. The value 200 indicates a successful request.|
 |message|String|The result.|
-|data|Object|The returned sub-device information in the case of a successful request. For more information about the parameters, see the following data table.|
+|data|Object|The returned sub-device information in the case of a successful or failed request. For more information about the parameters, see the following data table.|
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -200,7 +200,7 @@ Sample response in the Alink JSON format:
 |id|String|The message ID. Valid values: 0 to 4294967295. Each message ID must be unique for the device.|
 |code|Integer|The HTTP status code. The value 200 indicates a successful request.|
 |message|String|The result.|
-|data|Object|The returned sub-device information in the case of a successful request. For more information about the parameters, see the following data table.|
+|data|Object|The returned sub-device information in the case of a successful or failed request. For more information about the parameters, see the following data table.|
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -272,7 +272,7 @@ Sample response in the Alink JSON format:
 |id|String|The message ID. Valid values: 0 to 4294967295. Each message ID must be unique for the device.|
 |code|Integer|The HTTP status code. The value 200 indicates a successful request.|
 |message|String|The result.|
-|data|Object|The returned sub-device information in the case of a successful request. For more information, see the following data table.|
+|data|Object|The returned sub-device information in the case of a successful or failed request. For more information, see the following data table.|
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -344,7 +344,7 @@ Sample response in the Alink JSON format:
 |id|String|The message ID. Valid values: 0 to 4294967295. Each message ID must be unique for the device.|
 |code|Integer|The HTTP status code. The value 200 indicates a successful request.|
 |message|String|The result.|
-|data|Object|The returned sub-device information in the case of a successful request. For more information, see the following data table.|
+|data|Object|The returned sub-device information in the case of a successful or failed request. For more information, see the following data table.|
 
 |Parameter|Type|Description|
 |---------|----|-----------|
