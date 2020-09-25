@@ -11,7 +11,7 @@ You can connect or disconnect sub-devices in sequence or in batches. Before you 
 -   The message delivery between sub-devices and IoT Platform supports QoS 0 rather than QoS 1.
 -   The number of sub-devices that are online at the same time cannot exceed 1,500 for a gateway. If the number of online sub-devices exceeds 1,500, IoT Platform rejects all new connection requests.
 -   When you connect or disconnect sub-devices in batches, the number of sub-devices in one batch cannot exceed 5.
--   When you connect or disconnect sub-devices in batches, the result is either all sub-devices succeed or all sub-devices fail. If all sub-devices fail, the returned data contain detailed failure information.
+-   When you connect or disconnect sub-devices in batches, the result is either all sub-devices succeed or all sub-devices fail. If all sub-devices fail, the data response parameter contains detailed failure information.
 
 ## Connect sub-devices
 
