@@ -41,4 +41,5 @@ Connect the device to IoT Platform. For more information about best practices, s
 
 -   [Access IoT Platform by using MQTT.fx](/intl.en-US/Best Practices/Device access/Access IoT Platform by using MQTT.fx.md)
 -   [Connect Android Things to IoT Platform](/intl.en-US/Best Practices/Device access/Connect Android Things to IoT Platform.md)
--   
+-   [t127995.md\#]()
+
