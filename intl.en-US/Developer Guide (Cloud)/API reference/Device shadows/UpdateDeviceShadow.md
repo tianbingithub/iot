@@ -25,7 +25,7 @@ The shadow information includes the following parameters:
 
 -   **method**: a string that specifies the operation type. Valid value: **update**.
 -   **state**: a string that specifies the expected shadow information. The **desired** parameter includes the details of settings.
--   **version**: a LONG value that specifies the version of the shadow. The specified version must be greater than the current version. |
+-   **version**: a LONG integer that specifies the version of the shadow. The specified version must be greater than the current version. |
 |IotInstanceId|String|No|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|The ID of the instance. This parameter is not required for public instances. However, the parameter is required for the instances that you have purchased. |
 |DeltaUpdate|Boolean|No|false|Specifies whether to update the **desired** parameters of the shadow.
 
