@@ -1,83 +1,111 @@
-# BatchCheckDeviceNames {#reference_xct_2rz_wdb .reference}
+# BatchCheckDeviceNames
 
-调用该接口在指定产品下批量自定义设备名称。IoT平台将检查名称的合法性。
+调用该接口在指定产品下批量自定义设备名称。物联网平台将检查名称的合法性。
 
-## 限制说明 {#section_osp_szm_xdb .section}
+## 接口使用说明
 
-该接口需要和BatchRegisterDeviceWithApplyId接口结合使用，实现在一个产品下批量注册（即新建）多个设备，并且为每个设备单独命名。单次调用，最多能传入1,000 个设备名称。
+该接口和**BatchRegisterDeviceWithApplyId**接口结合使用，在一个产品下批量注册多个设备，并且为每个设备单独命名。
 
-首先，您必须先调用本接口，传入要批量注册的设备名称。IoT平台检查您提交的设备名称符合要求后，为您返回申请批次ID（ApplyId）。然后，您可以通过使用ApplyId调用BatchRegisterDeviceWithApplyId接口，批量注册设备。如果设备名称列表中包含不合法的设备名称，批量申请设备失败。可调用QueryBatchRegisterDeviceStatus接口检查设备名称是否合法，其返回结果中会提示不合法的设备名称列表。
+批量注册设备流程：
 
-如果您想在一个产品下批量注册多个设备，且不指定设备名称，设备名称由系统随机生成，您可以调用BatchRegisterDevice接口。
+1. 调用本接口，传入要批量注册的设备的名称，物联网平台返回申请批次ID（**ApplyId**）。返回成功结果，表示批量校验设备名称的申请已经提交成功。实际的校验是异步执行的，会有一个过程。
 
-如果您想在一个产品下单独注册一个设备，您可以调用RegisterDevice接口。
+2. 调用[QueryBatchRegisterDeviceStatus](~~69483~~)查看名称设置结果。
 
-## 请求参数 {#section_hkz_p1n_xdb .section}
+3. 调用[BatchRegisterDeviceWithApplyId](~~69514~~)批量注册设备。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：BatchCheckDeviceNames。|
-|ProductKey|String|是|要批量注册的设备所隶属的产品Key。|
-|DeviceName|List<String\>|是| 要批量注册的设备的名称列表。每个设备名称应包含4-32个字符，可以包含英文字母、数字和特殊字符（连字符、下划线、@符号、点号、和英文冒号）。
+4. （可选）调用[QueryBatchRegisterDeviceStatus](~~69483~~)查看设备注册结果。
 
- **说明：** 单次调用，最多能传入1,000个设备名称。
+5. 调用[QueryPageByApplyId](~~69518~~)查看批量注册的设备信息。
 
- |
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+## 限制说明
 
-## 返回参数 {#section_xy2_qbn_xdb .section}
+-   单次调用，最多能定义1,000 个设备名称。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|Data|Data|调用成功时，返回的数据。详情见下表Data。|
+**说明：** 子账号共享主账号配额。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|ApplyId|Long|调用成功时，系统返回的申请批次ID。使用该ApplyId，调用BatchRegisterDeviceWithApplyId接口来批量创建设备。|
 
-## 示例 {#section_fts_bcn_xdb .section}
+## 调试
 
-**请求示例**
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=BatchCheckDeviceNames&type=RPC&version=2018-01-20)
+
+## 请求参数
+
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|BatchCheckDeviceNames|系统规定参数。取值：BatchCheckDeviceNames。 |
+|ProductKey|String|是|a1BwAGV\*\*\*\*|要注册的设备所属的产品ProductKey。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|DeviceName.N|RepeatList|否|light|要注册的设备名称。设备名称在产品内具有唯一性。支持英文字母、数字、短划线（-）、下划线（\_）、at符号（@）、点号（.）和英文冒号（:），长度限制为4~32个字符。
+
+ 该参数与**DeviceNameList.N.DeviceName**必须传入一种。若您同时传入该参数与**DeviceNameList.N.DeviceName**，则以**DeviceNameList.N.DeviceName**为准。
+
+ **说明：** 单次调用，最多能传入1,000个设备名称。 |
+|DeviceNameList.N.DeviceName|String|否|light1|要注册的设备名称。设备名称在产品内具有唯一性。支持英文字母、数字、短划线（-）、下划线（\_）、at符号（@）、点号（.）和英文冒号（:），长度限制为4~32个字符。
+
+ 该参数与**DeviceName.N**必须传入一种。若您同时传入该参数与**DeviceName.N**，则以该参数为准。
+
+ **说明：** 单次调用，最多能传入1,000个设备名称。 |
+|DeviceNameList.N.DeviceNickname|String|否|智能灯1|要注册的设备的备注名称。支持中文、英文字母、日文、数字和下划线（\_），备注名称长度为4~64个字符，一个中文或日文占2个字符。
+
+ 若传入该参数，则必须同时传入**DeviceNameList.N.DeviceName**。 |
+
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见 [公共参数文档](~~30561~~)。
+
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Data|Struct| |返回的数据。 |
+|ApplyId|Long|1295006|调用成功时，系统返回的申请批次ID。使用该ApplyId，调用[BatchRegisterDeviceWithApplyId](~~69514~~)接口来批量创建设备。 |
+|InvalidDeviceNameList|List|\{ "InvalidDeviceName": \[ "APT$", "aw" \] \}|调用失败时，返回的不合法设备名称列表。 |
+|InvalidDeviceNicknameList|List|\{ "InvalidDeviceNickname": \[ "APT$", "aw" \] \}|调用失败时，返回的不合法设备备注名称列表。 |
+|ErrorMessage|String|系统异常|调用失败时返回的出错信息。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=BatchCheckDeviceNames
-&productKey=al**********
-&DeviceName.1=device1
-&DeviceName.3=device2
-&DeviceName.2=device3
-&DeviceName.4=device4
-&公共请求参数
+&productKey=a1BwAGV****
+&DeviceNameList.1.DeviceName=light1
+&DeviceNameList.2.DeviceName=light2
+&DeviceNameList.3.DeviceName=light3
+&DeviceNameList.3.DeviceNickname=智能灯3
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-      "RequestId":"57b144cf-09fc-4916-a272-a62902d5b207",
-      "Success": true，
-      "Data": {
-        "ApplyId": 4399
-      }
-    }
-    ```
+```
+<BatchCheckDeviceNamesResponse>
+<Data>
+    <ApplyId>1234567</ApplyId>
+</Data>
+<RequestId>E976E36B-6874-4FA4-8BC0-55F9BEC5E2EF</RequestId>
+<Success>true</Success>
+<BatchCheckDeviceNamesResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version='1.0' encoding='utf-8'?>
-    <BatchCheckDeviceNamesResponse>
-        <RequestId>57b144cf-09fc-4916-a272-a62902d5b207</RequestId>
-        <Success>true</Success>
-        <Data>
-            <ApplyId>4401</ApplyId>
-        </Data>
-    </BatchCheckDeviceNamesResponse>
-    ```
-
+```
+{
+	"Data": {
+		"ApplyId": 1234567
+	},
+	"RequestId": "E976E36B-6874-4FA4-8BC0-55F9BEC5E2EF",
+	"Success": true
+}
+```
 
