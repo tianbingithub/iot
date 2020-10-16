@@ -18,7 +18,7 @@
 |--|--|----|---|--|
 |Action|String|是|UpdateRule|系统规定参数。取值：UpdateRule。 |
 |RuleId|Long|是|100000|要修改的规则ID。可在物联网平台控制台**规则引擎**\>**云产品流转**页查看规则ID，或调用[ListRule](~~69486~~)从返回结果中查看。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
 |Select|String|否|deviceName\(\) as deviceName, items.Humidity.value as Humidity, items.Temperature.value as Temperature|要执行的SQL Select语句。具体内容参照[SQL表达式](~~30554~~)。
 
  **说明：** 此处传入的是**Select**下的内容。例如，如果**Select**语句为`Select a,b,c`，则此处传入`a,b,c`。 |
@@ -33,12 +33,12 @@
     -   `/thing/topo/lifecycle`设备拓扑关系变更消息。
     -   `/thing/event/property/history/post`设备历史属性上报消息。
     -   `/thing/event/${tsl.event.identifier}/history/post`设备历史事件上报消息，`${}`中是产品物模型中事件identifier。
-    -   `/ota/upgrade`设备固件升级状态通知消息。
+    -   `/ota/upgrade`设备OTA升级状态通知消息。
     -   `/ota/version/post`设备OTA模块版本号上报消息。
     -   `/thing/deviceinfo/update`设备标签变更消息。
     -   `/edge/driver/${driver_id}/point_post`物联网边缘计算的透传模式Topic消息，`${}`中是物联网边缘计算的设备接入驱动ID。
 
-OTA升级批次状态通知Topic也属于基础通信Topic，ShortTopic格式为：`${packageId}/${jobId}/ota/job/status`。其中，`${packageId}`是固件ID，`${jobId}`是升级批次ID。
+OTA升级批次状态通知Topic也属于基础通信Topic，ShortTopic格式为：`${packageId}/${jobId}/ota/job/status`。其中，`${packageId}`是升级包ID，`${jobId}`是升级批次ID。
 
 -   自定义Topic的ShortTopic，如：`${deviceName}/user/get`。
 
@@ -58,7 +58,7 @@ OTA升级批次状态通知Topic也属于基础通信Topic，ShortTopic格式为
 
  **说明：** 此处传入的是**Where**中的内容。例如，如果**Where**语句为`Where a>10`，则此处传入`a>10`。 |
 |ProductKey|String|否|aladaeW\*\*\*\*|应用该规则的产品ProductKey。 |
-|Name|String|否|test\_2|规则名称。支持使用中英文字符、数字、下划线（\_）和连接号（-），长度为1~30个字符，一个中文字符计为2个字符。 |
+|Name|String|否|test\_2|规则名称。支持中文、英文字母、日文、数字、下划线（\_）和短划线（-），长度为1~30个字符，一个中文或日文占2个字符。 |
 |RuleDesc|String|否|test|规则的描述信息。长度限制为100个字符，一个中文字符计为1个字符。 |
 |TopicType|Integer|否|1|-   **0**：**ShortTopic**参数描述中的基础通信Topic或物模型通信Topic，包含OTA升级批次状态通知Topic。
 -   **1**：自定义Topic。
