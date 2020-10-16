@@ -71,7 +71,7 @@
 -   **false**：否。
 
  默认值为**false**。 |
-|OtaEventFlag|Boolean|否|true|推送消息类型是否选择固件升级状态通知。可选值：
+|OtaEventFlag|Boolean|否|true|推送消息类型是否选择OTA升级状态通知。可选值：
 
  -   **true**：是。
 -   **false**：否。
