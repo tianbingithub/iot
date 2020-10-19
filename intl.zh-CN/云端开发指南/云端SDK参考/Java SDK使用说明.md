@@ -25,7 +25,7 @@ keyword: [物联网, IoT, 物联网平台, 设备, Java SDK, API]
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-iot</artifactId>
-                <version>7.12.0</version>
+                <version>7.15.0</version>
             </dependency>
             ```
 
