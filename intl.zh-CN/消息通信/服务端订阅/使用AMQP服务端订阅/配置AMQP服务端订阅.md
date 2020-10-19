@@ -16,7 +16,7 @@ keyword: [IoT, 物联网平台, AMQP, 服务端订阅设备消息]
 
 3.  在服务端订阅页，单击**创建订阅**。
 
-4.  在创建订阅对话框中，完成配置，单击**确定**。
+4.  在创建订阅对话框中，完成配置，单击**确认**。
 
     |参数|说明|
     |--|--|
@@ -31,31 +31,19 @@ keyword: [IoT, 物联网平台, AMQP, 服务端订阅设备消息]
 
         -   `/${YourProductKey}/${YourDeviceName}/user/get`，具有订阅权限。
         -   `/${YourProductKey}/${YourDeviceName}/user/update`，具有发布权限。
-        -   `/sys/${YourProductKey}/${YourDeviceName}/thing/event/property/post`，具有发布权限。
-那么，服务端订阅会推送具有发布权限的Topic类中的消息，即`/${YourProductKey}/${YourDeviceName}/user/update`和`/sys/${YourProductKey}/${YourDeviceName}/thing/event/property/post`中的消息。
+        -   `/${YourProductKey}/${YourDeviceName}/thing/event/property/post`，具有发布权限。
+那么，服务端订阅会推送具有发布权限的Topic类中的消息，即`/${YourProductKey}/${YourDeviceName}/user/update`和`/${YourProductKey}/${YourDeviceName}/thing/event/property/post`中的消息。
 
     -   **设备状态变化通知**：该产品下的设备上下线状态变化时通知的消息。
     -   **网关子设备发现上报**：网关将发现的子设备信息上报给物联网平台。需要网关上的应用程序支持。网关产品特有消息类型。
     -   **设备拓扑关系变更**：子设备和网关之间的拓扑关系建立和解除消息。网关产品特有消息类型。
     -   **设备生命周期变更**：设备创建、删除、禁用、启用等消息。
     -   **物模型历史数据上报**：设备上报的属性和事件历史数据。
-    -   **固件升级状态通知**：验证固件和批量升级时，设备升级成功或失败的事件通知。
+    -   **OTA升级状态通知**：验证升级包和批量升级时，设备升级成功或失败的事件通知。
     -   **设备标签变更**：设备上报的标签变更消息。
     -   **OTA模块版本号上报**：设备上报的OTA模块版本号变更消息。
     -   **OTA升级批次状态通知**：设备OTA升级批次状态变化通知。 |
 
-
-## 相关文档
-
--   [使用限制](/intl.zh-CN/消息通信/服务端订阅/使用限制.md)
--   [管理消费组](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/管理消费组.md)
--   [AMQP客户端接入说明](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/AMQP客户端接入说明.md)
--   [Java SDK接入示例](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/Java SDK接入示例.md)
--   [Node.js SDK接入示例](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/Node.js SDK接入示例.md)
--   [.NET SDK接入示例](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/.NET SDK接入示例.md)
--   [Python 2.7 SDK接入示例](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/Python 2.7 SDK接入示例.md)
--   [PHP SDK接入示例]()
--   [Go SDK接入示例](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/Go SDK接入示例.md)
 
 [配置AMQP客户端](/intl.zh-CN/消息通信/服务端订阅/使用AMQP服务端订阅/AMQP客户端接入说明.md)
 
