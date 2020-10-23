@@ -103,7 +103,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
     "messagetype":"upload",
     "topic":"/al12345****/device123/user/update",
     "payload":" ", 
-    "timestamp": " ",
+    "timestamp": " "
     }
     ```
 
