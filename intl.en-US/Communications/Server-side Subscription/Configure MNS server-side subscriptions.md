@@ -77,7 +77,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
 
         ```
         MNSClient client = account.getMNSClient(); 
-        CloudQueue queue = client.getQueueRef("aliyun-iot-a1wmrZPO8o9"); //Specify the automatically created queue.
+        CloudQueue queue = client.getQueueRef("aliyun-iot-a1xxxxxx8o9"); //Specify the automatically created queue.
         
             while (true) { 
             //Retrieve messages. 
@@ -119,7 +119,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
     -   ota\_event: firmware update status |
     |topic|The IoT Platform topic from which the message is forwarded.|
     |payload|The base64-encoded message payload. For more information about data formats, see [Data formats](/intl.en-US/Communications/Data formats.md). |
-    |timestamp|The timestam. It is the number of seconds that have elapsed since the epoch time January 1, 1970, 00:00:00 UTC.|
+    |timestamp|The timestamp. It is the number of seconds that have elapsed since the epoch time January 1, 1970, 00:00:00 UTC.|
 
 
 **Related topics**  
