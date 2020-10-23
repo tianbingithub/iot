@@ -52,7 +52,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
 
     In this example, the MNS SDK for Java is used to listen to the MNS queue.
 
-    For information about how to download the MNS SDK, see[MNS documentation](https://www.alibabacloud.com/help/zh/doc-detail/27508.htm).
+    For information about how to download the MNS SDK, see [MNS documentation](https://www.alibabacloud.com/help/zh/doc-detail/27508.htm).
 
     1.  To install the MNS SDK for Java, add the following dependencies to the pom.xml file:
 
