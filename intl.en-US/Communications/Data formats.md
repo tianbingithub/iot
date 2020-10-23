@@ -283,7 +283,7 @@ The following table lists the parameters.
 |400|request error|The error message returned because an internal error has occurred during request processing.|
 |460|request parameter error|The error message returned because the request parameter is invalid and the device has failed to verify the parameter.|
 |429|too many requests|The error message returned because the maximum number of requests in a specified period has been reached.|
-|9200|device not actived|The error message returned because the device is not activated.|
+|9200|device not activated|The error message returned because the device is not activated.|
 |9201|device offline|The error message returned because the device is disconnected from IoT Platform.|
 |403|request forbidden|The error message returned because the request is forbidden due to overdue payments.|
 
