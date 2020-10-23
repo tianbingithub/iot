@@ -93,7 +93,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
     4.  Run the program to listen to the MNS queue.
 3.  Start a device and send a message from the device to IoT Platform.
 
-    For more information about how to develop a device-side SDK, see[Link SDK documentation](https://www.alibabacloud.com/help/doc-detail/96624.htm).
+    For more information about how to develop a device-side SDK, see [Link SDK documentation](https://www.alibabacloud.com/help/doc-detail/96624.htm).
 
 4.  Check whether your cloud application retrieves the message. The following code shows the format of a retrieved message:
 
@@ -115,7 +115,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
     -   topo\_listfound: the detection of sub-devices by a gateway
     -   topo\_lifecycle: device topology changes
     -   device\_lifecycle: device lifecycle changes
-    -   thing\_history: historical TSLdata
+    -   thing\_history: historical TSL data
     -   ota\_event: firmware update status |
     |topic|The IoT Platform topic from which the message is forwarded.|
     |payload|The base64-encoded message payload. For more information about data formats, see [Data formats](/intl.en-US/Communications/Data formats.md). |
