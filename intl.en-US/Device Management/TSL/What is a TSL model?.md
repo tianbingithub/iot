@@ -186,6 +186,6 @@ Structure of the extended information of the TSL model:
 ## Procedure
 
 1.  Define features for a product in the [IoT Platform console](http://iot.console.aliyun.com/). For more information, see [Add a TSL feature](/intl.en-US/Device Management/TSL/Add a TSL feature.md) and [Batch add TSL features](/intl.en-US/Device Management/TSL/Batch add TSL features.md).
-2.  Implement the TSL model of the product. For more information, see[Link SDK documentation](https://www.alibabacloud.com/help/product/93051.htm).
+2.  Implement the TSL model of the product. For more information, see [Link SDK documentation](https://www.alibabacloud.com/help/product/93051.htm).
 3.  Debug uplink and downlink connections. After the TSL model is implemented, the devices of the product can report properties and events to IoT Platform. IoT Platform can send commands to devices to set properties or call services. For more information, see [Device properties, events, and services](/intl.en-US/Device Management/Develop devices based on Alink Protocol/Device properties, events, and services.md). IoT Platform can call the [SetDeviceDesiredProperty](/intl.en-US/Developer Guide (Cloud)/API reference/Use TSL models/SetDeviceDesiredProperty.md) API operation to specify the expected value for a device property. For more information about how a device can obtain the expected value of a property, see [Desired device property values](/intl.en-US/Device Management/Develop devices based on Alink Protocol/Desired device property values.md).
 
