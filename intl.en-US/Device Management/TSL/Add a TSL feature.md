@@ -164,7 +164,7 @@ If the gateway connection protocol is set to OPC UA, enter a node name. The node
         |Version Number|The version number of the TSL model. You can manage the TSL model based on the version number. The version number must be 1 to 16 characters in length, and can contain letters, digits, and periods \(.\). |
         |Note|The description of the TSL model. The description must be 1 to 100 characters in length, and can contain letters, digits, and special characters.|
 
-    3.  f an online version is available, you must check the differences between the current version and the online version.
+    3.  If an online version is available, you must check the differences between the current version and the online version.
 
         Click **View differences**. In the View Differences dialog box, you can view the differences. If the current version is configured as normal, click **Confirm**. In the Release model online? dialog box, the checkbox is automatically selected.
 
