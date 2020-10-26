@@ -88,7 +88,7 @@
  具体要求和示例见下文请求参数补充说明。 |
 |ConsumerGroupIds.N|RepeatList|否|nJRaJPn5U1JITGfjBO9l00\*\*\*\*|创建的AMQP订阅中的消费组ID，**Type**为**AMQP**时必填。
 
- 调用[CreateConsumerGroup](~~170388~~)创建消费组成功后，会返回消费组ID。您可以调用[QueryConsumerGroupList](~~170419~~)按消费组名称查询消费组ID，也可以在物联网平台控制台选择**规则引擎**\>**服务端订阅**\>**消费组列表**，查看消费组ID。 |
+ 调用[CreateConsumerGroup](~~170388~~)创建消费组成功后，会返回消费组ID。您可以调用[QueryConsumerGroupList](~~170419~~)按消费组名称查询消费组ID，也可以在物联网平台控制台对应实例下，选择**规则引擎**\>**服务端订阅**\>**消费组列表**，查看消费组ID。 |
 
 **说明：** 请求参数中的Flag不能全部为**false**或不传入，至少传入一个为**true**的Flag。
 
