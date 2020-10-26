@@ -101,7 +101,7 @@
 -   **AMQP** |
 |ConsumerGroupIds.N|RepeatList|否|nJRaJPn5U1JITGfjBO9l00\*\*\*\*|创建的AMQP订阅中的消费组ID，**Type**为**AMQP**时必填。
 
- 调用[CreateConsumerGroup](~~170388~~)创建消费组成功后，会返回消费组ID。您可以调用[QueryConsumerGroupList](~~170419~~)按消费组名称查询消费组ID，也可以在物联网平台控制台选择**规则引擎**\>**服务端订阅**\>**消费组列表**，查看消费组ID。 |
+ 调用[CreateConsumerGroup](~~170388~~)创建消费组成功后，会返回消费组ID。您可以调用[QueryConsumerGroupList](~~170419~~)按消费组名称查询消费组ID，也可以在物联网平台控制台，选择**规则引擎**\>**服务端订阅**\>**消费组列表**，查看消费组ID。 |
 |MnsConfiguration|String|否|\{ "themeName": "mns-test-topic1", "regionName": "cn-shanghai", "role": \{ "roleArn": "acs:ram::5645\*\*\*:role/aliyuniotaccessingmnsrole", "roleName": "AliyunIOTAccessingMNSRole" \} \}|MNS队列的配置信息，**Type**为**MNS**时必填。
 
  具体要求和示例见下文请求参数补充说明。 |
