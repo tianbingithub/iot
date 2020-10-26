@@ -17,7 +17,7 @@
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
 |Action|String|是|UpdateRule|系统规定参数。取值：UpdateRule。 |
-|RuleId|Long|是|100000|要修改的规则ID。可在物联网平台控制台**规则引擎**\>**云产品流转**页查看规则ID，或调用[ListRule](~~69486~~)从返回结果中查看。 |
+|RuleId|Long|是|100000|要修改的规则ID。可在物联网平台控制台对应实例下，**规则引擎**\>**云产品流转**页查看规则ID，或调用[ListRule](~~69486~~)从返回结果中查看。 |
 |IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
 |Select|String|否|deviceName\(\) as deviceName, items.Humidity.value as Humidity, items.Temperature.value as Temperature|要执行的SQL Select语句。具体内容参照[SQL表达式](~~30554~~)。
 
