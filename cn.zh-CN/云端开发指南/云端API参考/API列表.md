@@ -4,7 +4,7 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 
 # API列表
 
-以下是物联网平台 API 列表。
+以下是物联网平台API列表。
 
 ## 产品管理相关API
 
@@ -38,8 +38,8 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 |[DisableThing](/cn.zh-CN/云端开发指南/云端API参考/设备管理/DisableThing.md)|禁用设备。|
 |[EnableThing](/cn.zh-CN/云端开发指南/云端API参考/设备管理/EnableThing.md)|解禁设备。|
 |[ResetThing](/cn.zh-CN/云端开发指南/云端API参考/设备管理/ResetThing.md)|重置设备。|
-|[BatchCheckDeviceNames](/cn.zh-CN/云端开发指南/云端API参考/设备管理/BatchCheckDeviceNames.md)|批量检查设备名称。|
-|[BatchRegisterDeviceWithApplyId](/cn.zh-CN/云端开发指南/云端API参考/设备管理/BatchRegisterDeviceWithApplyId.md)|根据 ApplyId 批量申请设备。|
+|[BatchCheckDeviceNames](/cn.zh-CN/云端开发指南/云端API参考/设备管理/BatchCheckDeviceNames.md)|批量自定义设备名称，物联网平台将检查名称的合法性。|
+|[BatchRegisterDeviceWithApplyId](/cn.zh-CN/云端开发指南/云端API参考/设备管理/BatchRegisterDeviceWithApplyId.md)|根据ApplyId批量申请设备。|
 |[BatchRegisterDevice](/cn.zh-CN/云端开发指南/云端API参考/设备管理/BatchRegisterDevice.md)|批次申请特定数量设备。|
 |[QueryBatchRegisterDeviceStatus](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryBatchRegisterDeviceStatus.md)|查询批量注册设备状态。|
 |[QueryPageByApplyId](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryPageByApplyId.md)|查询批次设备列表。|
@@ -63,6 +63,7 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 |[QueryDeviceCert](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryDeviceCert.md)|查询单个设备的X.509证书。|
 |[QueryCertUrlByApplyId](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryCertUrlByApplyId.md)|查询批量注册设备的X.509证书下载链接。|
 |[QueryDeviceByStatus](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryDeviceByStatus.md)|根据设备状态查询设备列表。|
+|[QueryDeviceBySQL](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryDeviceBySQL.md)|通过SQL语句快速搜索满足指定条件的设备。|
 
 ## 分组管理相关API
 
@@ -180,25 +181,30 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 |[GetDeviceShadow](/cn.zh-CN/云端开发指南/云端API参考/设备影子/GetDeviceShadow.md)|查询设备影子。|
 |[UpdateDeviceShadow](/cn.zh-CN/云端开发指南/云端API参考/设备影子/UpdateDeviceShadow.md)|更新设备影子。|
 
-## 固件升级相关API
+## OTA升级相关API
 
 |API|描述|
 |---|--|
-|[GenerateOTAUploadURL](/cn.zh-CN/云端开发指南/云端API参考/固件升级/GenerateOTAUploadURL.md)|生成固件文件的上传对象存储的信息。|
-|[CreateOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/固件升级/CreateOTAFirmware.md)|创建固件。|
-|[DeleteOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/固件升级/DeleteOTAFirmware.md)|删除指定固件。|
-|[ListOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/固件升级/ListOTAFirmware.md)|查询固件列表。|
-|[QueryOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/固件升级/QueryOTAFirmware.md)|查询指定固件的详细信息。|
-|[CreateOTAVerifyJob](/cn.zh-CN/云端开发指南/云端API参考/固件升级/CreateOTAVerifyJob.md)|创建固件验证批次。|
-|[CreateOTAStaticUpgradeJob](/cn.zh-CN/云端开发指南/云端API参考/固件升级/CreateOTAStaticUpgradeJob.md)|创建静态批量升级批次。|
-|[CreateOTADynamicUpgradeJob](/cn.zh-CN/云端开发指南/云端API参考/固件升级/CreateOTADynamicUpgradeJob.md)|创建动态升级批次。|
-|[ListOTAJobByFirmware](/cn.zh-CN/云端开发指南/云端API参考/固件升级/ListOTAJobByFirmware.md)|获取固件下的升级批次列表。|
-|[ListOTAJobByDevice](/cn.zh-CN/云端开发指南/云端API参考/固件升级/ListOTAJobByDevice.md)|获取设备所在的固件升级批次列表。|
-|[QueryOTAJob](/cn.zh-CN/云端开发指南/云端API参考/固件升级/QueryOTAJob.md)|查询指定升级批次的详情。|
-|[CancelOTAStrategyByJob](/cn.zh-CN/云端开发指南/云端API参考/固件升级/CancelOTAStrategyByJob.md)|取消动态升级批次所关联的动态升级策略。|
-|[CancelOTATaskByDevice](/cn.zh-CN/云端开发指南/云端API参考/固件升级/CancelOTATaskByDevice.md)|取消指定固件下状态为待升级的设备升级作业。|
-|[CancelOTATaskByJob](/cn.zh-CN/云端开发指南/云端API参考/固件升级/CancelOTATaskByJob.md)|取消指定批次下的设备升级作业。|
-|[ListOTATaskByJob](/cn.zh-CN/云端开发指南/云端API参考/固件升级/ListOTATaskByJob.md)|查询指定升级批次下的设备升级作业列表。|
+|[GenerateOTAUploadURL](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/GenerateOTAUploadURL.md)|生成升级包文件上传到OSS的URL及详细信息。|
+|[GenerateDeviceNameListURL](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/GenerateDeviceNameListURL.md)|生成设备列表文件上传到OSS的URL及详细信息。在创建静态升级批次时，设备列表文件可用于指定要升级的设备。|
+|[CreateOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CreateOTAFirmware.md)|添加升级包。|
+|[DeleteOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/DeleteOTAFirmware.md)|删除指定升级包。|
+|[ListOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/ListOTAFirmware.md)|查询升级包列表。|
+|[QueryOTAFirmware](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/QueryOTAFirmware.md)|查询指定升级包的详细信息。|
+|[CreateOTAVerifyJob](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CreateOTAVerifyJob.md)|创建升级包验证批次。|
+|[CreateOTAStaticUpgradeJob](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CreateOTAStaticUpgradeJob.md)|创建静态升级批次。|
+|[CreateOTADynamicUpgradeJob](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CreateOTADynamicUpgradeJob.md)|创建动态升级批次。|
+|[ListOTAJobByFirmware](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/ListOTAJobByFirmware.md)|获取升级包下的升级批次列表。|
+|[ListOTAJobByDevice](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/ListOTAJobByDevice.md)|获取设备所在的升级包升级批次列表。|
+|[ListOTATaskByJob](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/ListOTATaskByJob.md)|查询指定升级批次下的设备升级作业列表。|
+|[QueryOTAJob](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/QueryOTAJob.md)|查询指定升级批次的详情。|
+|[CancelOTAStrategyByJob](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CancelOTAStrategyByJob.md)|取消动态升级批次所关联的动态升级策略。|
+|[CancelOTATaskByDevice](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CancelOTATaskByDevice.md)|取消指定升级包下状态为待升级的设备升级作业。|
+|[CancelOTATaskByJob](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CancelOTATaskByJob.md)|取消指定批次下的设备升级作业。|
+|[CreateOTAModule](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/CreateOTAModule.md)|创建产品的OTA模块。|
+|[UpdateOTAModule](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/UpdateOTAModule.md)|修改OTA模块别名、描述。|
+|[DeleteOTAModule](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/DeleteOTAModule.md)|删除自定义OTA模块。|
+|[ListOTAModuleByProduct](/cn.zh-CN/云端开发指南/云端API参考/OTA升级/ListOTAModuleByProduct.md)|查询产品下的OTA模块列表。|
 
 物联网数据分析服务的云端API调用说明，请访问[数据开发API](https://help.aliyun.com/document_detail/135188.html)。
 
